@@ -1,1 +1,3 @@
-Python script just for fun, doesn't do much.
+>Script just for fun. Doesn't do much.
+
+>Having fun with the nmap module for python. 
