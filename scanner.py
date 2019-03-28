@@ -2,6 +2,13 @@
 import sys
 import random
 
+try:
+	import nmap # import nmap.py module
+	print "nmap imported... let's begin :-)"
+except ImportError:
+	print "nmap not installed, try something else..."
+pass
+
 RED   = "\033[1;31m"  
 BLUE  = "\033[1;34m"
 PURPLE = "\033[0;35m"
@@ -29,7 +36,6 @@ def title():
 def scanNet(ip, port, arg):
 
 	sys.stdout.write(BLUE)
-	import nmap # import nmap.py module
 	nm = nmap.PortScanner() # instantiate nmap.PortScanner object
 
 	#nm.scan('192.168.1.84', '22-443') # scan host 127.0.0.1, ports from 22 to 443
@@ -98,6 +104,8 @@ def attack(choice,method):
 
 
 print attack(inputNextStage,inputMethod)
+
+sys.exit()
 
 
 
