@@ -1,13 +1,17 @@
 #!/usr/bin/python
 import sys
+import os
 import random
 
 try:
 	import nmap # import nmap.py module
-	print "nmap imported... let's begin :-)"
+	print "Nmap imported. Let's begin."
 except ImportError:
-	print "nmap not installed, try something else..."
+	print "Nmap not installed. Try pip install python-nmap or something else."
 pass
+
+
+
 
 RED   = "\033[1;31m"  
 BLUE  = "\033[1;34m"
@@ -17,9 +21,8 @@ GREEN = "\033[1;32m"
 RESET = "\033[0;0m"
 BOLD    = "\033[;1m"
 REVERSE = "\033[;7m"
-
 sys.stdout.write(GREEN)
-loading = ["Loading...","Mining Bitcoin","Entering the Matrix","Mining shitcoin"]
+loading = ["Loading...","Generating Electricity...","Mining Bitcoin...","Entering the Matrix...","Mining shitcoin..."]
 
 def title():
 
@@ -32,7 +35,7 @@ def title():
     print('|---------------------------------------|')
 	                                                                                    
     return random.choice(loading)
-
+    
 def scanNet(ip, port, arg):
 
 	sys.stdout.write(BLUE)
@@ -68,10 +71,26 @@ def scanNet(ip, port, arg):
 
 	return ('Complete')
 
+#logic for netdiscover input. Spawns a shell process
+def netdiscover(str):	
+	if str.lower() == "y":
+		list = os.system("sudo netdiscover")
+		print(list)
+	if str.lower() == "?":
+		print ("netdiscover scans Local Net for devices, run 'sudo apt-get install netdiscover' to install it")
+
 
 
 #Printing on terminal begins here 
 print title()
+
+#netdiscover
+inputDiscover = raw_input("Would you like to run netdiscover in shell? [Y/N/?] PRESS CTRL+C TO CONTINUE WHEN RUNNING NETDISCOVER: ")
+netdiscover(inputDiscover)
+
+#netdiscover python
+inputPyDis = raw_input("Would you like to run netdiscover in Python? [Y/N/?]")
+netDiscover.netdiscoverPy(inputPyDis)
 
 #take input before scanning
 inputIP = raw_input("Enter Target IP: ")
@@ -87,7 +106,7 @@ sys.stdout.write(GREEN)
 
 #--------------------Initiate next phase-----------------------
 inputNextStage = raw_input("Attack "+inputIP+" ? [Y/N] ")
-inputMethod = raw_input("|dos|arp|ssh| ?")
+inputMethod = raw_input("arp or ssh| ?")
 print(random.choice(loading))
 
 def attack(choice,method):
@@ -95,11 +114,16 @@ def attack(choice,method):
 		print('|---------------------------------------|')
 		print('yes attack')
 		print('|---------------------------------------|')
-		if(method.lower()=="dos"):
-			print('skid')
+		if(method.lower()=="arp"):
+			list = os.system("sudo ettercap -M " + inputIP)
+			print(list)
 			print('|---------------------------------------|')
 
-	elif():
+		if(method.lower()=="ssh"):
+			list = os.system("sudo ssh " + inputIP)
+			print(list)
+			print('|---------------------------------------|')
+	if(choice.lower()=="n"):
 		print('no attack')	
 
 
